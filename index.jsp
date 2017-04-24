@@ -1,3 +1,5 @@
+<%@page contentType="text/html"%>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,6 +13,9 @@
 <body>
 
 HTML de prueba
+
+<%= "Hola giles"%>
+
 
 	
 </body>
