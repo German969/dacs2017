@@ -39,11 +39,10 @@ public class Pedidos {
 				+ ", idclientes=" + id + "]";
 	}
 
-	public Pedidos(int idpedidos, Date fechapedido, String estado, int idclientes) {
-		this.id = idpedidos;
+	public Pedidos(Date fechapedido, String estado, Cliente cliente) {
 		this.fechapedido = fechapedido;
 		this.estado = estado;
-		this.id = idclientes;
+		this.cliente = cliente;
 	}
 
 	public Pedidos() {

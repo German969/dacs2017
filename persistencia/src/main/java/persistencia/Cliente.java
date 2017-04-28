@@ -163,9 +163,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", telefono=" + telefono
-				+ ", localidad=" + localidad + ", provincia=" + provincia + ", pais=" + pais + ", codigopostal="
-				+ codigopostal + ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
+		return "Cliente [id=" + id + ", dni=" + dni + ", nombre=" + nombre + "]";
 	}
 	
 }
