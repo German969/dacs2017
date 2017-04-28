@@ -13,8 +13,8 @@ public class Cliente {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id_cliente")
-	private int idcliente;
+	@Column(name = "id")
+	private int id;
 	
 	@Column(name = "dni")
 	private String dni;
@@ -46,12 +46,12 @@ public class Cliente {
 	@Column(name = "password")
 	private String password;
 
-	public int getIdcliente() {
-		return idcliente;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdcliente(int idcliente) {
-		this.idcliente = idcliente;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDni() {
@@ -138,9 +138,8 @@ public class Cliente {
 		
 	}
 
-	public Cliente(int idcliente, String dni, String nombre, String telefono, String localidad, String provincia,
+	public Cliente(String dni, String nombre, String telefono, String localidad, String provincia,
 			String pais, String codigopostal, String email, String usuario, String password) {
-		this.idcliente = idcliente;
 		this.dni = dni;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -155,7 +154,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [idcliente=" + idcliente + ", dni=" + dni + ", nombre=" + nombre + ", telefono=" + telefono
+		return "Cliente [id=" + id + ", dni=" + dni + ", nombre=" + nombre + ", telefono=" + telefono
 				+ ", localidad=" + localidad + ", provincia=" + provincia + ", pais=" + pais + ", codigopostal="
 				+ codigopostal + ", email=" + email + ", usuario=" + usuario + ", password=" + password + "]";
 	}

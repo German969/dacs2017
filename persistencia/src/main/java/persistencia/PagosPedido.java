@@ -13,8 +13,10 @@ import javax.persistence.Table;
 @Table(name="PAGOS_PEDIDO")
 public class PagosPedido {
 	
-	@Column(name = "idpagos")
-	private int idpagos;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
+	private int id;
 	
 	@Column(name = "idpedidos")
 	private int idpedidos;
@@ -26,8 +28,8 @@ public class PagosPedido {
 		
 	}
 
-	public PagosPedido(int idpagos, int idpedidos, Date fechapago, float monto) {
-		this.idpagos = idpagos;
+	public PagosPedido(int id, int idpedidos, Date fechapago, float monto) {
+		this.id = id;
 		this.idpedidos = idpedidos;
 		this.fechapago = fechapago;
 		this.monto = monto;
@@ -35,7 +37,7 @@ public class PagosPedido {
 
 	@Override
 	public String toString() {
-		return "PagosPedido [idpagos=" + idpagos + ", idpedidos=" + idpedidos + ", fechapago=" + fechapago + ", monto="
+		return "PagosPedido [idpagos=" + id + ", idpedidos=" + idpedidos + ", fechapago=" + fechapago + ", monto="
 				+ monto + "]";
 	}
 
@@ -43,11 +45,11 @@ public class PagosPedido {
 	private float monto;
 
 	public int getIdpagos() {
-		return idpagos;
+		return id;
 	}
 
 	public void setIdpagos(int idpagos) {
-		this.idpagos = idpagos;
+		this.id = idpagos;
 	}
 
 	public int getIdpedidos() {
