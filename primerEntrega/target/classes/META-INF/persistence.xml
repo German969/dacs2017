@@ -6,8 +6,6 @@
 
 	<persistence-unit name="com.persistencia" transaction-type="RESOURCE_LOCAL">
 
-		<class>com.german.Student</class>
-
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class"/>
 			
