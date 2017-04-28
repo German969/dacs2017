@@ -7,6 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form method="POST" action="prueba">
+			Buscar: <input type="text" name="name" />
+			En: <select>
+  						<option value="cliente">cliente</option>
+  						<option value="producto">producto</option>
+  						<option value="pedido">pedido</option>
+					</select>
+            <input type="submit" value="buscar" />
+    </form>
 </body>
 </html>
