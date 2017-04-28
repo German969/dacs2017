@@ -147,18 +147,9 @@ public class Cliente {
 		
 	}
 
-	public Cliente(String dni, String nombre, String telefono, String localidad, String provincia,
-			String pais, String codigopostal, String email, String usuario, String password) {
+	public Cliente(String dni, String nombre) {
 		this.dni = dni;
 		this.nombre = nombre;
-		this.telefono = telefono;
-		this.localidad = localidad;
-		this.provincia = provincia;
-		this.pais = pais;
-		this.codigopostal = codigopostal;
-		this.email = email;
-		this.usuario = usuario;
-		this.password = password;
 	}
 
 	@Override
