@@ -16,5 +16,6 @@
 					</select>
             <input type="submit" value="buscar" />
     </form>
+    <%= "hola a ver si anda esto" %>
 </body>
 </html>
