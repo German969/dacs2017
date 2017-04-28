@@ -28,32 +28,32 @@ public class Cliente {
 	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column(name = "telefono")
-	private String telefono;
-	
-	@Column(name = "localidad")
-	private String localidad;
-	
-	@Column(name = "provincia")
-	private String provincia;
-	
-	@Column(name = "pais")
-	private String pais;
-	
-	@Column(name = "codigopostal")
-	private String codigopostal;
-	
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "usuario")
-	private String usuario;
-	
-	@Column(name = "password")
-	private String password;
-	
-	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY)
-	private Set<Pedidos> pedidos;
+//	@Column(name = "telefono",nullable=true)
+//	private String telefono;
+//	
+//	@Column(name = "localidad",nullable=true)
+//	private String localidad;
+//	
+//	@Column(name = "provincia",nullable=true)
+//	private String provincia;
+//	
+//	@Column(name = "pais",nullable=true)
+//	private String pais;
+//	
+//	@Column(name = "codigopostal",nullable=true)
+//	private String codigopostal;
+//	
+//	@Column(name = "email",nullable=true)
+//	private String email;
+//	
+//	@Column(name = "usuario",nullable=true)
+//	private String usuario;
+//	
+//	@Column(name = "password",nullable=true)
+//	private String password;
+//	
+//	@OneToMany(mappedBy="cliente", fetch=FetchType.LAZY)
+//	private Set<Pedidos> pedidos;
 
 	public int getId() {
 		return id;
@@ -79,75 +79,76 @@ public class Cliente {
 		this.nombre = nombre;
 	}
 
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getLocalidad() {
-		return localidad;
-	}
-
-	public void setLocalidad(String localidad) {
-		this.localidad = localidad;
-	}
-
-	public String getProvincia() {
-		return provincia;
-	}
-
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-
-	public String getCodigopostal() {
-		return codigopostal;
-	}
-
-	public void setCodigopostal(String codigopostal) {
-		this.codigopostal = codigopostal;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+//	public String getTelefono() {
+//		return telefono;
+//	}
+//
+//	public void setTelefono(String telefono) {
+//		this.telefono = telefono;
+//	}
+//
+//	public String getLocalidad() {
+//		return localidad;
+//	}
+//
+//	public void setLocalidad(String localidad) {
+//		this.localidad = localidad;
+//	}
+//
+//	public String getProvincia() {
+//		return provincia;
+//	}
+//
+//	public void setProvincia(String provincia) {
+//		this.provincia = provincia;
+//	}
+//
+//	public String getPais() {
+//		return pais;
+//	}
+//
+//	public void setPais(String pais) {
+//		this.pais = pais;
+//	}
+//
+//	public String getCodigopostal() {
+//		return codigopostal;
+//	}
+//
+//	public void setCodigopostal(String codigopostal) {
+//		this.codigopostal = codigopostal;
+//	}
+//
+//	public String getEmail() {
+//		return email;
+//	}
+//
+//	public void setEmail(String email) {
+//		this.email = email;
+//	}
+//
+//	public String getUsuario() {
+//		return usuario;
+//	}
+//
+//	public void setUsuario(String usuario) {
+//		this.usuario = usuario;
+//	}
+//
+//	public String getPassword() {
+//		return password;
+//	}
+//
+//	public void setPassword(String password) {
+//		this.password = password;
+//	}
 
 	public Cliente() {
 		
 	}
 
 	public Cliente(String dni, String nombre) {
+		super();
 		this.dni = dni;
 		this.nombre = nombre;
 	}
