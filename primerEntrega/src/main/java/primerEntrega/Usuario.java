@@ -60,7 +60,6 @@ public class Usuario {
 
 	public Usuario(String dni, String nombre, String telefono, String localidad, String provincia, String pais,
 			String codigopostal, String email, String usuario, String password, Set<Pedido> pedidos) {
-		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.telefono = telefono;
@@ -168,11 +167,6 @@ public class Usuario {
 
 	public void setPedidos(Set<Pedido> pedidos) {
 		this.pedidos = pedidos;
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", dni=" + dni + ", nombre=" + nombre + "]";
 	}
 
 }
