@@ -1,63 +1,75 @@
 package primerEntrega;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import primerEntrega.Usuario;
 
 @Entity
 @Table(name = "PEDIDO")
 public class Pedido {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
+	@Column(name = "id_pedido")
+	private long id;
 	
-	@Column(name = "fechapedido")
-	private Date fechapedido;
+	@Column
+	private Date fecha;
 	
-	@Column(name = "estado")
+	@Column
 	private String estado;
 	
-	@JoinColumn(name="usuario")
-	@ManyToOne(fetch=FetchType.EAGER)
-	private Usuario usuario;
+	@Column
+	private Double total;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_usuario")
+	private Usuario cliente;
+	
+	@ManyToMany
+	@JoinTable(name = "LINEA_PEDIDO", joinColumns = @JoinColumn(name = "id_pedido"), inverseJoinColumns = @JoinColumn(name = "id_producto"))
+	private List<Producto> productos = new ArrayList<Producto>();
+	
+	@OneToOne
+	@JoinColumn(name = "id_mediodepago")
+	private MedioDePago mediodepago;
 
 	public Pedido() {
 		
 	}
 
-	public Pedido(Date fechapedido, String estado, Usuario usuario) {
-		super();
-		this.fechapedido = fechapedido;
+	public Pedido(long id, Date fecha, String estado, Double total, Usuario cliente) {
+		this.id = id;
+		this.fecha = fecha;
 		this.estado = estado;
-		this.usuario = usuario;
+		this.total = total;
+		this.cliente = cliente;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
-	public Date getFechapedido() {
-		return fechapedido;
+	public Date getFecha() {
+		return fecha;
 	}
 
-	public void setFechapedido(Date fechapedido) {
-		this.fechapedido = fechapedido;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 	public String getEstado() {
@@ -68,12 +80,28 @@ public class Pedido {
 		this.estado = estado;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Double getTotal() {
+		return total;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
+	public void setTotal(Double total) {
+		this.total = total;
+	}
+	
+	public Usuario getCliente() {
+		return cliente;
+	}
+	
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
+	
+	public List<Producto> getProductos() {
+		return productos;
+	}
+	
+	public void setProductos(List<Producto> productos) {
+		this.productos = productos;
 	}
 
 }

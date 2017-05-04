@@ -1,98 +1,116 @@
 package primerEntrega;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import primerEntrega.Pedido;
 
 @Entity
 @Table(name = "USUARIO")
 public class Usuario {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private int id;
-
-	@Column(name = "dni")
-	private String dni;
-
-	@Column(name = "nombre")
+	@Column(name = "id_usuario")
+	private long id;
+	
+	@Column
+	private long dni;
+	
+	@Column
+	private long cuitCuil;
+	
+	@Column
 	private String nombre;
-
-	@Column(name = "telefono")
+	
+	@Column
+	private String apellido;
+	
+	@Column
 	private String telefono;
-
-	@Column(name = "localidad")
+	
+	@Column
+	private String direccion;
+	
+	@Column
 	private String localidad;
-
-	@Column(name = "provincia")
+	
+	@Column
 	private String provincia;
-
-	@Column(name = "pais")
+	
+	@Column
 	private String pais;
-
-	@Column(name = "codigopostal")
-	private String codigopostal;
-
-	@Column(name = "email")
+	
+	@Column
+	private int coigoPostal;
+	
+	@Column
 	private String email;
-
-	@Column(name = "usuario")
-	private String usuario;
-
-	@Column(name = "password")
+	
+	@Column
+	private String user;
+	
+	@Column
 	private String password;
 	
 	@OneToOne
 	@JoinColumn(name = "id_rol")
 	private Rol rol;
-
-	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-	private Set<Pedido> pedidos;
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<Pedido>();
 
 	public Usuario() {
-
+		
 	}
 
-	public Usuario(String dni, String nombre, String telefono, String localidad, String provincia, String pais,
-			String codigopostal, String email, String usuario, String password, Set<Pedido> pedidos) {
+	public Usuario(long id, long dni, long cuitCuil, String nombre, String apellido, String telefono,
+			String direccion, String localidad, String provincia, String pais, int coigoPostal, String email,
+			String user, String password, Rol rol) {
+		this.id = id;
 		this.dni = dni;
+		this.cuitCuil = cuitCuil;
 		this.nombre = nombre;
+		this.apellido = apellido;
 		this.telefono = telefono;
+		this.direccion = direccion;
 		this.localidad = localidad;
 		this.provincia = provincia;
 		this.pais = pais;
-		this.codigopostal = codigopostal;
+		this.coigoPostal = coigoPostal;
 		this.email = email;
-		this.usuario = usuario;
+		this.user = user;
 		this.password = password;
-		this.pedidos = pedidos;
+		this.rol = rol;
 	}
 
-	public int getId() {
+	public long getIdusuario() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setIdusuario(int id) {
 		this.id = id;
 	}
 
-	public String getDni() {
+	public long getDni() {
 		return dni;
 	}
 
-	public void setDni(String dni) {
+	public void setDni(long dni) {
 		this.dni = dni;
+	}
+
+	public long getCuitCuil() {
+		return cuitCuil;
+	}
+
+	public void setCuitCuil(long cuitCuil) {
+		this.cuitCuil = cuitCuil;
 	}
 
 	public String getNombre() {
@@ -103,12 +121,28 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
 	public String getTelefono() {
 		return telefono;
 	}
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
 
 	public String getLocalidad() {
@@ -135,12 +169,12 @@ public class Usuario {
 		this.pais = pais;
 	}
 
-	public String getCodigopostal() {
-		return codigopostal;
+	public int getCoigoPostal() {
+		return coigoPostal;
 	}
 
-	public void setCodigopostal(String codigopostal) {
-		this.codigopostal = codigopostal;
+	public void setCoigoPostal(int coigoPostal) {
+		this.coigoPostal = coigoPostal;
 	}
 
 	public String getEmail() {
@@ -151,12 +185,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public String getUsuario() {
-		return usuario;
+	public String getUser() {
+		return user;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	public void setUser(String user) {
+		this.user = user;
 	}
 
 	public String getPassword() {
@@ -166,12 +200,12 @@ public class Usuario {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public Set<Pedido> getPedidos() {
+	
+	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
-
-	public void setPedidos(Set<Pedido> pedidos) {
+	
+	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
 

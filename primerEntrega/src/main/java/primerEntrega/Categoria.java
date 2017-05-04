@@ -10,30 +10,27 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PROVEEDOR")
-public class Proveedor {
+@Table(name = "CATEGORIA")
+public class Categoria {
 	
 	@Id
-	@Column(name = "id_proveedor")
+	@Column(name = "id_categoria")
 	private long id;
 	
 	@Column
-	private String nombre;
+	private String descripcion;
 	
-	@Column
-	private String pais;
-	
-	@OneToMany(mappedBy = "proveedor")
+	@OneToMany(mappedBy = "categoria")
 	private List<Producto> productos = new ArrayList<Producto>();
 
-	public Proveedor() {
-		
+	public Categoria() {
+		super();
 	}
 
-	public Proveedor(long id, String nombre, String pais) {
+	public Categoria(long id, String descripcion) {
+		super();
 		this.id = id;
-		this.nombre = nombre;
-		this.pais = pais;
+		this.descripcion = descripcion;
 	}
 
 	public long getId() {
@@ -44,20 +41,12 @@ public class Proveedor {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getPais() {
-		return pais;
-	}
-
-	public void setPais(String pais) {
-		this.pais = pais;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public List<Producto> getProductos() {

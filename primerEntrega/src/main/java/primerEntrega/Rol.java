@@ -14,25 +14,25 @@ import javax.persistence.Table;
 public class Rol {
 	
 	@Id
-	@Column(name = "id_rol")
-	private int id;
+	@Column
+	private long id;
 	
 	@Column
 	private String nombrerol;
 	
 	@OneToMany(mappedBy = "rol")
-	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	private List<Usuario> usuarios  = new ArrayList<Usuario>(); 
 
 	public Rol() {
 		
 	}
 
-	public Rol(int id, String nombrerol) {
+	public Rol(long id, String nombrerol) {
 		this.id = id;
 		this.nombrerol = nombrerol;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
