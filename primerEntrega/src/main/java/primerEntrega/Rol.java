@@ -1,8 +1,12 @@
 package primerEntrega;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,11 +14,14 @@ import javax.persistence.Table;
 public class Rol {
 	
 	@Id
-	@Column
+	@Column(name = "id_rol")
 	private int id;
 	
 	@Column
 	private String nombrerol;
+	
+	@OneToMany(mappedBy = "rol")
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
 
 	public Rol() {
 		

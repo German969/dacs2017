@@ -8,7 +8,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import primerEntrega.Pedido;
 
@@ -50,6 +52,10 @@ public class Usuario {
 
 	@Column(name = "password")
 	private String password;
+	
+	@OneToOne
+	@JoinColumn(name = "id_rol")
+	private Rol rol;
 
 	@OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos;
