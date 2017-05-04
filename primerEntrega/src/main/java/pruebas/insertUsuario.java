@@ -32,6 +32,9 @@ public class insertUsuario {
 		u3.setNombre("Ana");
 		
 		entityManager.persist(u1);
+		entityManager.persist(u2);
+		entityManager.persist(u3);
+		
 		entityManager.getTransaction().commit();
 		
 		entityManager.close();
