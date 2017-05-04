@@ -103,5 +103,13 @@ public class Pedido {
 	public void setProductos(List<Producto> productos) {
 		this.productos = productos;
 	}
+	
+	public MedioDePago getMediodepago() {
+		return mediodepago;
+	}
+	
+	public void setMediodepago(MedioDePago mediodepago) {
+		this.mediodepago = mediodepago;
+	}
 
 }

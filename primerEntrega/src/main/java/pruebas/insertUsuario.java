@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import primerEntrega.Categoria;
+import primerEntrega.MedioDePago;
 import primerEntrega.Pedido;
 import primerEntrega.Producto;
 import primerEntrega.Proveedor;
@@ -39,6 +40,12 @@ public class insertUsuario {
 				"etnad", "etnad", r2);
 		em.persist(u1);
 		em.persist(u2);
+		
+		//cargo medios de pago
+		MedioDePago mp1 = new MedioDePago(1, "Crédito");
+		MedioDePago mp2 = new MedioDePago(2, "Transferencia Bancaria");
+		em.persist(mp1);
+		em.persist(mp2);
 
 		//cargo pedidos
 		Date fecha = new GregorianCalendar(2017, 04, 02).getTime();
@@ -46,6 +53,8 @@ public class insertUsuario {
 		Pedido p2 = new Pedido(2L, fecha, "Cancelado", (double)0, u1);
 		Pedido p3 = new Pedido(3L, fecha, "Pendiente", (double)0, u1);
 		Pedido p4 = new Pedido(4L, fecha, "Pagado", (double)0, u2);
+		p1.setMediodepago(mp1);
+		p4.setMediodepago(mp2);
 		em.persist(p1);
 		em.persist(p2);
 		em.persist(p3);
@@ -116,7 +125,7 @@ public class insertUsuario {
 		
 		em.getTransaction().commit();
 		
-		//em.close();
+		em.close();
 		
 	}
 
