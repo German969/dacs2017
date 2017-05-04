@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import primerEntrega.Usuario;
 
 @Entity
-@Table(name = "PEDIDOS")
+@Table(name = "PEDIDO")
 public class Pedido {
 	
 	@Id
@@ -74,11 +74,6 @@ public class Pedido {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-
-	@Override
-	public String toString() {
-		return "Pedido [fechapedido=" + fechapedido + ", estado=" + estado + ", usuario=" + usuario + "]";
 	}
 
 }
