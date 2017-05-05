@@ -16,7 +16,7 @@ public class Read {
 
 		em.getTransaction().begin();
 	
-		Producto p = em.find(Producto.class, 2);
+		Producto p = em.find(Producto.class, 2L);
 		System.out.println(p);
 		
 		em.close();

@@ -148,4 +148,12 @@ public class Producto {
 		this.pedidos = pedidos;
 	}
 
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", marca=" + marca + ", descripcion=" + descripcion
+				+ ", precio=" + precio + ", comision=" + comision + ", stock=" + stock + ", categoria=" + categoria
+				+ ", proveedor=" + proveedor + "]";
+	}
+	
+
 }

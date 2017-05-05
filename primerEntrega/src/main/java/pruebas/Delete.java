@@ -16,7 +16,7 @@ public class Delete {
 
 		em.getTransaction().begin();
 		
-		Producto p = em.find(Producto.class, 1);
+		Producto p = em.find(Producto.class, 1L);
 		em.remove(p);
 		
 		em.getTransaction().commit();
