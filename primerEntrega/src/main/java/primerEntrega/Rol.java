@@ -1,12 +1,10 @@
 package primerEntrega;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,21 +12,18 @@ import javax.persistence.Table;
 public class Rol {
 	
 	@Id
-	@Column
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id")
 	private long id;
 	
-	@Column
+	@Column(name = "nombre_rol")
 	private String nombrerol;
-	
-	@OneToMany(mappedBy = "rol")
-	private List<Usuario> usuarios  = new ArrayList<Usuario>(); 
 
 	public Rol() {
 		
 	}
 
-	public Rol(long id, String nombrerol) {
-		this.id = id;
+	public Rol(String nombrerol) {
 		this.nombrerol = nombrerol;
 	}
 

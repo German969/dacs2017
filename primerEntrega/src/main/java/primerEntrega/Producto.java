@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -16,25 +18,26 @@ import javax.persistence.Table;
 public class Producto {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_producto")
 	private long id;
 	
-	@Column
+	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column
+	@Column(name = "marca")
 	private String marca;
 	
-	@Column
+	@Column(name = "descripcion")
 	private String descripcion;
 	
-	@Column
+	@Column(name = "precio")
 	private double precio;
 	
-	@Column
+	@Column(name = "comision")
 	private double comision;
 	
-	@Column
+	@Column(name = "stock")
 	private int stock;
 	
 	@OneToOne
@@ -52,9 +55,8 @@ public class Producto {
 		
 	}
 
-	public Producto(long id, String nombre, String marca, String descripcion, double precio, double comision, int stock,
+	public Producto(String nombre, String marca, String descripcion, double precio, double comision, int stock,
 			Categoria categoria, Proveedor proveedor) {
-		this.id = id;
 		this.nombre = nombre;
 		this.marca = marca;
 		this.descripcion = descripcion;

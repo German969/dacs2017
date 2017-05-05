@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,13 +16,14 @@ import javax.persistence.Table;
 public class Proveedor {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_proveedor")
 	private long id;
 	
-	@Column
+	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column
+	@Column(name = "pais")
 	private String pais;
 	
 	@OneToMany(mappedBy = "proveedor")
@@ -30,8 +33,7 @@ public class Proveedor {
 		
 	}
 
-	public Proveedor(long id, String nombre, String pais) {
-		this.id = id;
+	public Proveedor(String nombre, String pais) {
 		this.nombre = nombre;
 		this.pais = pais;
 	}

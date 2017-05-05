@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -14,10 +16,11 @@ import javax.persistence.Table;
 public class Categoria {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
 	private long id;
 	
-	@Column
+	@Column(name = "descripcion")
 	private String descripcion;
 	
 	@OneToMany(mappedBy = "categoria")
@@ -27,9 +30,8 @@ public class Categoria {
 		super();
 	}
 
-	public Categoria(long id, String descripcion) {
+	public Categoria(String descripcion) {
 		super();
-		this.id = id;
 		this.descripcion = descripcion;
 	}
 

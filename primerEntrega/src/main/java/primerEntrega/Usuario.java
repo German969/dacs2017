@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 public class Usuario {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private long id;
 	
@@ -69,10 +72,9 @@ public class Usuario {
 		
 	}
 
-	public Usuario(long id, long dni, long cuitCuil, String nombre, String apellido, String telefono,
+	public Usuario(long dni, long cuitCuil, String nombre, String apellido, String telefono,
 			String direccion, String localidad, String provincia, String pais, int coigoPostal, String email,
 			String user, String password, Rol rol) {
-		this.id = id;
 		this.dni = dni;
 		this.cuitCuil = cuitCuil;
 		this.nombre = nombre;

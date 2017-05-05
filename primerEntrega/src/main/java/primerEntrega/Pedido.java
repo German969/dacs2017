@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -20,17 +22,15 @@ import javax.persistence.Table;
 public class Pedido {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_pedido")
 	private long id;
 	
-	@Column
+	@Column(name = "fecha")
 	private Date fecha;
 	
-	@Column
+	@Column(name = "estado")
 	private String estado;
-	
-	@Column
-	private Double total;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
@@ -48,11 +48,9 @@ public class Pedido {
 		
 	}
 
-	public Pedido(long id, Date fecha, String estado, Double total, Usuario cliente) {
-		this.id = id;
+	public Pedido(Date fecha, String estado, Double total, Usuario cliente) {
 		this.fecha = fecha;
 		this.estado = estado;
-		this.total = total;
 		this.cliente = cliente;
 	}
 
@@ -78,14 +76,6 @@ public class Pedido {
 
 	public void setEstado(String estado) {
 		this.estado = estado;
-	}
-
-	public Double getTotal() {
-		return total;
-	}
-
-	public void setTotal(Double total) {
-		this.total = total;
 	}
 	
 	public Usuario getCliente() {

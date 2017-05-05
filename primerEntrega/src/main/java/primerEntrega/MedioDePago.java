@@ -1,12 +1,10 @@
 package primerEntrega;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,21 +12,18 @@ import javax.persistence.Table;
 public class MedioDePago {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id_mediodepago")
 	private int id;
 	
-	@Column
+	@Column(name = "descripcion")
 	private String descripcion;
-	
-	@OneToMany(mappedBy = "mediodepago")
-	private List<Pedido> pedidosPagados = new ArrayList<Pedido>();
 
 	public MedioDePago() {
 		
 	}
 
-	public MedioDePago(int id, String descripcion) {
-		this.id = id;
+	public MedioDePago(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
