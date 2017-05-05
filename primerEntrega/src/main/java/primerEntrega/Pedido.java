@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "PEDIDO")
@@ -26,9 +27,11 @@ public class Pedido {
 	@Column(name = "id_pedido")
 	private long id;
 	
+	@NotNull
 	@Column(name = "fecha")
 	private Date fecha;
 	
+	@NotNull
 	@Column(name = "estado")
 	private String estado;
 	
@@ -39,6 +42,9 @@ public class Pedido {
 	@ManyToMany
 	@JoinTable(name = "LINEA_PEDIDO", joinColumns = @JoinColumn(name = "id_pedido"), inverseJoinColumns = @JoinColumn(name = "id_producto"))
 	private List<Producto> productos = new ArrayList<Producto>();
+	
+	@Column(name = "fechaPago")
+	private Date fechaPago;
 	
 	@OneToOne
 	@JoinColumn(name = "id_mediodepago")

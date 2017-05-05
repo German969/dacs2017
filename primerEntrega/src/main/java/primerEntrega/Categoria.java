@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "CATEGORIA")
@@ -20,6 +22,8 @@ public class Categoria {
 	@Column(name = "id_categoria")
 	private long id;
 	
+	@NotNull
+    @Size(min = 1, max = 50)
 	@Column(name = "descripcion")
 	private String descripcion;
 	

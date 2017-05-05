@@ -12,6 +12,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "USUARIO")
@@ -22,43 +26,68 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private long id;
 	
-	@Column
+	@NotNull
+	@Min(1)
+	@Max(999999999999999L)
+	@Column(name = "dni")
 	private long dni;
 	
-	@Column
+	@NotNull
+    @Min(1)
+    @Max(999999999999999L)
+	@Column(name  = "cuitCuil")
 	private long cuitCuil;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "apellido")
 	private String apellido;
 	
-	@Column
+	@NotNull
+	@Column(name = "telefono")
 	private String telefono;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 100)
+	@Column(name = "direccion")
 	private String direccion;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "localidad")
 	private String localidad;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "provincia")
 	private String provincia;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "pais")
 	private String pais;
 	
-	@Column
+	@NotNull
+	@Column(name = "codigoPostal")
 	private int coigoPostal;
 	
-	@Column
+	@NotNull
+	@Column(name = "email")
 	private String email;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "user")
 	private String user;
 	
-	@Column
+	@NotNull
+    @Size(min = 1, max = 50)
+	@Column(name = "password")
 	private String password;
 	
 	@OneToOne

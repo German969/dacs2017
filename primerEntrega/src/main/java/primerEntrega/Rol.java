@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "ROL")
@@ -16,6 +18,8 @@ public class Rol {
 	@Column(name = "id")
 	private long id;
 	
+	@NotNull
+    @Size(min = 1, max = 50)
 	@Column(name = "nombre_rol")
 	private String nombrerol;
 
