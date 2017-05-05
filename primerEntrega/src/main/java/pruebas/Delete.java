@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import primerEntrega.Producto;
+
 public class Delete {
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.persistencia");
@@ -14,8 +16,8 @@ public class Delete {
 
 		em.getTransaction().begin();
 		
-//		Person p = entityManager.find(Person.class, 1);
-//		entityManager.remove(p);
+		Producto p = em.find(Producto.class, 1);
+		em.remove(p);
 		
 		em.getTransaction().commit();
 

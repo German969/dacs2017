@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import primerEntrega.Producto;
+
 public class Read {
 
 	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.persistencia");
@@ -14,8 +16,8 @@ public class Read {
 
 		em.getTransaction().begin();
 	
-//		Person p = entityManager.find(Person.class, 2);
-//		System.out.println(p);
+		Producto p = em.find(Producto.class, 2);
+		System.out.println(p);
 		
 		em.close();
 		

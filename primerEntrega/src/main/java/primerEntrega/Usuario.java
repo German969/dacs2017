@@ -22,43 +22,43 @@ public class Usuario {
 	@Column(name = "id_usuario")
 	private long id;
 	
-	@Column
+	@Column(name = "dni")
 	private long dni;
 	
-	@Column
+	@Column(name = "cuit_cuil")
 	private long cuitCuil;
 	
-	@Column
+	@Column(name = "nombre")
 	private String nombre;
 	
-	@Column
+	@Column(name = "apellido")
 	private String apellido;
 	
-	@Column
+	@Column(name = "telefono")
 	private String telefono;
 	
-	@Column
+	@Column(name = "direccion")
 	private String direccion;
 	
-	@Column
+	@Column(name = "localidad")
 	private String localidad;
 	
-	@Column
+	@Column(name = "provincia")
 	private String provincia;
 	
-	@Column
+	@Column(name = "pais")
 	private String pais;
 	
-	@Column
+	@Column(name = "codigo_postal")
 	private int coigoPostal;
 	
-	@Column
+	@Column(name = "email")
 	private String email;
 	
-	@Column
+	@Column(name = "user")
 	private String user;
 	
-	@Column
+	@Column(name = "password")
 	private String password;
 	
 	@OneToOne
