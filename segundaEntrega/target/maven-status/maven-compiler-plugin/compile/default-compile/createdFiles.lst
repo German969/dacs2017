@@ -1,0 +1,4 @@
+beans\UsuarioBean.class
+entities\Usuario_.class
+entities\Usuario.class
+dao\UsuarioDao.class
