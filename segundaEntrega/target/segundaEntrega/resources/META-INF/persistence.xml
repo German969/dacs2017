@@ -12,6 +12,11 @@
 	<jta-data-source>java:/segundaEntregaDS</jta-data-source>
 	
 	<class>entities.Usuario</class>
+	<class>entities.Pedido</class>
+	<class>entities.Rol</class>
+	<class>entities.Producto</class>
+	<class>entities.Categoria</class>
+	<class>entities.Proveedor</class>
 
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class"/>

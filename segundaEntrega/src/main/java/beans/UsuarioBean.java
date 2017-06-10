@@ -7,28 +7,76 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import dao.UsuarioDao;
+import entities.Rol;
 import entities.Usuario;
 
 @ManagedBean(name = "usuarioBean", eager = true)
 @SessionScoped
 public class UsuarioBean {
 	
-	int id;
-
-	String name;
+	// ---------------- ATTRIBUTES -------------------- //
 	
-	Usuario usuario;
+	private int id;
+	
+	private String name;
+	
+	private String apellido;
+	
+	private String cuit;
+	
+	private String email;
+	
+	private String user;
+	
+	private String password;
+	
+	private String telefono;
+	
+	private String pais;
+	
+	private String provincia;
+	
+	private String localidad;
+	
+	private String codigoPostal;
+	
+	private String direccion;
+	
+	private String nameRol;
+	
+	private Rol rol;
+	
+	private Usuario usuario;
+	
+	private Usuario usuario2;
+	
+	private boolean newUsuario = false;
 
 	@EJB
 	UsuarioDao dao;
 	
 	public List<Usuario> usuarios;
+	
+	private String filterBy;
+	
+	public String filter;
+	
+	public boolean isFiltered = false;
+	
+	// ---------------- METHODS -------------------- //
 
 	public String create() {
 		
-		this.saveUsuarios();
+		telefono = new String("");
+		pais = new String("");
+		provincia = new String("");
+		localidad = new String("");
+		codigoPostal = new String("");
+		direccion = new String("");
+		
+		rol = dao.getRol(nameRol);
 
-		Usuario u = new Usuario(name);
+		Usuario u = new Usuario(name,apellido,cuit,email,user,password,telefono,pais,provincia,localidad,codigoPostal,direccion,rol);
 
 		dao.create(u);
 		
@@ -38,7 +86,21 @@ public class UsuarioBean {
 
 	}
 	
+	public String newUsuario(){
+		
+		newUsuario = true;
+		
+		nameRol = new String("");
+		
+		usuario = new Usuario();
+		
+		return null;
+		
+	}
+	
 	public String getAll() {
+		
+		isFiltered = false;
 
 		usuarios = dao.getUsuarios();
 		
@@ -47,50 +109,160 @@ public class UsuarioBean {
 	}
 	
 	public List<Usuario> getAllUsers() {
-
-		usuarios = dao.getUsuarios();
+		
+		if(isFiltered){
+			
+			usuarios = dao.getByFilter(filter,filterBy);
+			
+			
+		}else{
+			
+			usuarios = dao.getUsuarios();
+			
+			if(newUsuario){
+				
+				Usuario u = new Usuario();
+				
+				u.setCanEdit(true);
+				
+				u.setNewUser(true);
+				
+				if(usuarios.isEmpty()){
+					u.setId(1);
+				}else{
+					
+					u.setId(usuarios.get(usuarios.size()-1).getId()+1);
+					
+				}
+				
+				
+				usuarios.add(u);
+				
+			}
+			
+			
+		}
 		
 		return usuarios;
 
 	}
 	
-	public String getByName() {
-
-		usuarios = dao.getByName(name);
+	public String getByFilter() {
+		
+		isFiltered  = true;
 		
 		return "usuarios.xhtml";
-
+	
 	}
 	
 	public String editUsuario(Usuario usuario) {
-		  name = usuario.getNombre();
+		  saveAllFields(usuario);
+		  nameRol = usuario.getRol().getNombre();
 	      usuario.setCanEdit(true);
 	      return null;
 	   }
 	
+	private void saveAllFields(Usuario usuario) {
+		
+		this.id = usuario.getId();
+		this.apellido = usuario.getApellido();
+		this.codigoPostal = usuario.getCodigoPostal();
+		this.cuit = usuario.getCuit();
+		this.direccion = usuario.getDireccion();
+		this.email = usuario.getEmail();
+		this.localidad = usuario.getLocalidad();
+		this.name = usuario.getNombre();
+		this.pais = usuario.getPais();
+		this.password = usuario.getPassword();
+		this.provincia = usuario.getProvincia();
+		this.rol = usuario.getRol();
+		this.telefono = usuario.getTelefono();
+		this.user = usuario.getUser();
+		
+	}
+
 	public String notEditUsuario(Usuario usuario) {
-	      usuario.setCanEdit(false);
-	      usuario.setNombre(name);
-	      return null;
+		
+		if(newUsuario){
+			usuarios.remove(usuarios.size()-1);
+		}else{
+			
+			usuario.setApellido(apellido);
+			usuario.setCodigoPostal(codigoPostal);
+			usuario.setCuit(cuit);
+			usuario.setDireccion(direccion);
+			usuario.setEmail(email);
+			usuario.setId(id);
+			usuario.setLocalidad(localidad);
+			usuario.setNombre(name);
+			usuario.setPais(pais);
+			usuario.setPassword(password);
+			usuario.setProvincia(provincia);
+			usuario.setRol(rol);
+			usuario.setTelefono(telefono);
+			usuario.setUser(user);
+			
+			usuario.setCanEdit(false);
+			
+			dao.update(usuario);
+			
+		}
+		return null;
 	   }
 	
 	public String saveUsuarios() {
 	      
-	      //set "canEdit" of all employees to false 
-	      
 	      for (Usuario usuario : usuarios) {
 	    	  if(usuario.isCanEdit()){
-	    		  this.update();
+	    		  
+	    		  if(usuario.isNewUser()){
+	    			  
+	    			  rol = dao.getRol(nameRol);
+	    			  
+	    			  Usuario u = new Usuario(usuario.getNombre(),
+	    					  					usuario.getApellido(),
+	    					  					usuario.getCuit(),
+	    					  					usuario.getEmail(),
+	    					  					usuario.getUser(),
+	    					  					usuario.getPassword(),
+	    					  					usuario.getTelefono(),
+	    					  					usuario.getPais(),
+	    					  					usuario.getProvincia(),
+	    					  					usuario.getProvincia(),
+	    					  					usuario.getCodigoPostal(),
+	    					  					usuario.getDireccion(),
+	    					  					rol);
+	    			  
+	    			  dao.create(u);
+	    				
+	    			  this.getAll();
+	    			  
+	    		  }else{
+	    			  
+	    			  this.update();
+	    			  
+	    		  }
+	    		  
 	    	  };
 	         usuario.setCanEdit(false);
 	      }
 	      
+	      nameRol = new String("");
 	      
+	      newUsuario = false;
 	      
 	      return null;
 	   }
 	
+	public List<Rol> getRoles(){
+		
+		return dao.getRoles();
+		
+	}
+	
 	public void update() {
+		
+		usuario.setRol(dao.getRol(nameRol));
 		
 		dao.update(usuario);
 
@@ -115,6 +287,8 @@ public class UsuarioBean {
 	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
+	
+	// ---------------- GETTERS AND SETTERS -------------------- //
 
 	public int getId() {
 		return id;
@@ -130,6 +304,134 @@ public class UsuarioBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public String getCuit() {
+		return cuit;
+	}
+
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getPais() {
+		return pais;
+	}
+
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+
+	public String getCodigoPostal() {
+		return codigoPostal;
+	}
+
+	public void setCodigoPostal(String coigoPostal) {
+		this.codigoPostal = coigoPostal;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
+	}
+
+	public String getNameRol() {
+		return nameRol;
+	}
+
+	public void setNameRol(String nameRol) {
+		this.nameRol = nameRol;
+	}
+
+	public Usuario getUsuario2() {
+		return usuario2;
+	}
+
+	public void setUsuario2(Usuario usuario2) {
+		this.usuario2 = usuario2;
+	}
+
+	public String getFilterBy() {
+		return filterBy;
+	}
+
+	public void setFilterBy(String filterBy) {
+		this.filterBy = filterBy;
+	}
+
+	public String getFilter() {
+		return filter;
+	}
+
+	public void setFilter(String filter) {
+		this.filter = filter;
 	}
 	
 	

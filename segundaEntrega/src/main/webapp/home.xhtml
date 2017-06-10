@@ -15,20 +15,43 @@
 
 <h:head>
 	<title>Webapp!</title>
-	<h:outputStylesheet library="css" name="bootstrap.css" />
-	<h:outputScript library="js" name="msj.js" />
 	<h:outputStylesheet library="css" name="styles.css" />
+	<h:outputStylesheet library="css" name="bt-style.css" />
 </h:head>
 
 <h:body>
 
 	<h2>Welcome</h2>
+	
+	<div class="column1">
 
 	<h3>Usuarios</h3>
 	
 	<h:form>
 	<h:commandButton action = "usuarios.xhtml" value = "Usuarios" />
 	</h:form>
+	
+	</div
+	
+	><div class="column1">
+	
+	<h3>Productos</h3>
+	
+	<h:form>
+	<h:commandButton action = "productos.xhtml" value = "Productos" />
+	</h:form>
+	
+	</div
+	
+	><div class="column1">
+	
+	<h3>Pedidos</h3>
+	
+	<h:form>
+	<h:commandButton action = "pedidos.xhtml" value = "Pedidos" />
+	</h:form>
+	
+	</div>
 
 </h:body>
 </html>
